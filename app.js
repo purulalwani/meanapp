@@ -27,34 +27,34 @@ app.use('/users', users);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
-  var err = new Error('Not Found');
-  err.status = 404;
-  next(err);
-});
+        var err = new Error('Not Found');
+        err.status = 404;
+        next(err);
+        });
 
 // error handlers
 
 // development error handler
 // will print stacktrace
 if (app.get('env') === 'development') {
-  app.use(function(err, req, res, next) {
-    res.status(err.status || 500);
-    res.render('error', {
-      message: err.message,
-      error: err
-    });
-  });
+    app.use(function(err, req, res, next) {
+            res.status(err.status || 500);
+            res.render('error', {
+                       message: err.message,
+                       error: err
+                       });
+            });
 }
 
 // production error handler
 // no stacktraces leaked to user
 app.use(function(err, req, res, next) {
-  res.status(err.status || 500);
-  res.render('error', {
-    message: err.message,
-    error: {}
-  });
-});
+        res.status(err.status || 500);
+        res.render('error', {
+                   message: err.message,
+                   error: {}
+                   });
+        });
 
 
 module.exports = app;
@@ -80,7 +80,7 @@ app.use(passport.initialize());
 mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'news';
 //take advantage of openshift env vars when available:
 if(process.env.OPENSHIFT_MONGODB_DB_URL){
-    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'news';
+    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + process.env.OPENSHIFT_APP_NAME;
 }
 
 
