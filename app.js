@@ -75,11 +75,23 @@ require('./config/passport');
 app.use(passport.initialize());
 
 
-mongoose.connect('mongodb://localhost/news', function(err) {
+
+//provide a sensible default for local development
+mongodb_connection_string = 'mongodb://127.0.0.1:27017/' + 'news';
+//take advantage of openshift env vars when available:
+if(process.env.OPENSHIFT_MONGODB_DB_URL){
+    mongodb_connection_string = process.env.OPENSHIFT_MONGODB_DB_URL + 'news';
+}
+
+
+
+
+//mongoose.connect('mongodb://localhost/news', function(err) {
+mongoose.connect(mongodb_connection_string, function(err) {
                  if(err) {
-                 console.log('connection error', err);
+                 console.log('DB connection error', err);
                  } else {
-                 console.log('connection successful');
+                 console.log('DB connection successful');
                  }
                  });
 
