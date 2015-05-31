@@ -36,9 +36,9 @@ app.factory('posts', ['$http', 'auth', function($http, auth){
                                });
                       };
                       o.get = function(id) {
-                      alert("ID: " + id);
+                      //alert("ID: " + id);
                       return $http.get('/posts/' + id).then(function(res){
-                                                            alert("res.data: " + res.data);
+                                                            //alert("res.data: " + res.data);
                                                             return res.data;
                                                             });
                       };
